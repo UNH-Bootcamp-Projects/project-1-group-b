@@ -1,77 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"
-    />
-    <script
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Concert Cloud</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+  <link href="assets/css/style.css">
+</head>
 
-    <link href="style.css" />
-  </head>
-
-  <body>
-    <section class="hero is-medium is-link">
-      <div class="hero-body">
-        <p class="title">Medium hero</p>
-        <p class="subtitle">Medium subtitle</p>
-      </div>
-    </section>
-    <div class="container is-fluid">
-      <div class="notification is-primary">
-        This container is <strong>fluid</strong>: it will have a 32px gap on
-        either side, on any viewport size.
-      </div>
-      <input
-        class="input is-medium searchInput"
-        type="text"
-        placeholder="Medium input"
-      />
-      <input
-        class="input is-medium datePicker"
-        type="date"
-        placeholder="Medium input"
-      />
-      <div class="dropdown is-active">
-        <div class="dropdown-trigger">
-          <button
-            class="button"
-            aria-haspopup="true"
-            aria-controls="dropdown-menu"
-          >
-            <span>Dropdown button</span>
-            <span class="icon is-small">
-              <i class="fas fa-angle-down" aria-hidden="true"></i>
-            </span>
-          </button>
+<body>
+  <section class="hero is-medium is-link">
+    <div class="hero-body">
+      <p class="title">
+        Medium hero
+      </p>
+      <p class="subtitle">
+        Medium subtitle
+      </p>
+    </div>
+  </section>
+  <div class="container is-fluid">
+    <div class="notification is-primary">
+      <div class="field has-addons">
+        <div class="control">
+          <input class="input is-medium search-input" type="date" placeholder="Medium input">
         </div>
-        <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-          <div class="dropdown-content">
-            <a href="#" class="dropdown-item"> Overview </a>
-            <a href="#" class="dropdown-item"> Modifiers </a>
-            <a href="#" class="dropdown-item"> Grid </a>
-            <a href="#" class="dropdown-item"> Form </a>
-            <a href="#" class="dropdown-item"> Elements </a>
-            <a href="#" class="dropdown-item"> Components </a>
-            <a href="#" class="dropdown-item"> Layout </a>
-            <hr class="dropdown-divider" />
-            <a href="#" class="dropdown-item"> More </a>
+        <div class="control">
+          <input class="input" type="text" placeholder="Find a repository">
+        </div>
+        <div class="control">
+          <div class="select dropdownContent">
+            <select>
+              <option>Select dropdown</option>
+              <option>With options</option>
+            </select>
           </div>
+        </div>
+        <div class="control">
+          <a class="button is-info submitBtn">
+            Search
+          </a>
         </div>
       </div>
     </div>
-    <button class="button is-large submitBtn">Submit</button>
-    <div class="results"></div>
-
-    <script src="assets/js/javascript.js"></script>
-  </body>
+  </div>
+  </div>
+  <div class="results">
+    <div class="tile is-ancestor">
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">One</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Two</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Three</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child box">
+          <p class="title">Four</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bulma-calendar@6.0.9/dist/js/bulma-calendar.min.js"
+    integrity="sha256-j5R7XaUm/P3SCc5bo5XQ8maH3vkFFlXNSeg4ckGiO0k=" crossorigin="anonymous"></script>
+  <script src="assets/js/javascript.js"></script>
+</body>
 </html>
