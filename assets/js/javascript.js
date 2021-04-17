@@ -1,40 +1,37 @@
 // variables
 var submitBtn = $(".submitBtn");
-var searchInputEl = $(".search-input");
-var datePickerEl = $(".date-picker");
-var dropDownEl = $(".dropdown-content");
+var searchInputEl = $(".searchInput");
 
 // functions
 
-function getData(event) {
+function getData(cityName) {
   // fetch both API's
   return new Promise(function (resolve, reject) {
     fetch(
-      //TicketMaster API for concerts
-      `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn`
+      `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=${cityName}&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn`
     )
-      .then(function (response) {
-        return response.json();
+      .then(function (responseTicket) {
+        return responseTicket.json();
       })
-      .then(function (forecastData) {
-        var lat = forecastData.city.coord.lat;
-        var lon = forecastData.city.coord.lon;
-
-        fetch(
-          //Weather API for...well, weather
-          `http://api.weatherstack.com/43c0e4c4f816398c7b97a3b59817de2b`
-        )
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (oneCallData) {
-            resolve({
-              forecastData: forecastData,
-              oneCallData: oneCallData,
-            });
-          });
+      .then(function (ticketData) {
+        console.log(ticketData._embedded.events[0]);
       });
   });
+
+var datePickerEl = $(".datePicker");
+var dropDownEl = $(".dropdownContent");
+
+  fetch(
+    'http://api.weatherstack.com/forecast?access_key=43c0e4c4f816398c7b97a3b59817de2b&query='+encodeURIComponent('New York')+'&forecast_days=1'
+  )
+  .then(function (responseWeather) {
+    return responseWeather.json();
+  })
+  .then(function (weatherData){
+    console.log(weatherData);
+  }) 
 }
 
-submitBtn.on("click", getData);
+// getData();
+
+submitBtn.on('click',getData)
