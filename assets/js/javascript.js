@@ -1,8 +1,6 @@
 // variables
 var submitBtn = $(".submitBtn");
 var searchInputEl = $(".searchInput");
-var datePickerEl = $(".date-picker");
-var dropDownEl = $(".dropdown-content");
 
 // functions
 
@@ -18,15 +16,22 @@ function getData(cityName) {
       .then(function (ticketData) {
         console.log(ticketData._embedded.events[0]);
       });
-
-    // fetch(`http://api.weatherstack.com/43c0e4c4f816398c7b97a3b59817de2b`)
-    //   .then(function (responseWeather) {
-    //     return responseWeather.json();
-    //   })
-    //   .then(function (weatherData) {
-    //     console.log(weatherData);
-    //   });
   });
+
+var datePickerEl = $(".datePicker");
+var dropDownEl = $(".dropdownContent");
+
+  fetch(
+    'http://api.weatherstack.com/forecast?access_key=43c0e4c4f816398c7b97a3b59817de2b&query='+encodeURIComponent('New York')+'&forecast_days=1'
+  )
+  .then(function (responseWeather) {
+    return responseWeather.json();
+  })
+  .then(function (weatherData){
+    console.log(weatherData);
+  }) 
 }
 
-getData();
+// getData();
+
+submitBtn.on('click',getData)
