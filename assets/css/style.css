@@ -1,0 +1,17 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+#tileDiv {
+    margin-right: auto;
+    margin-left: auto;
+    width: 25%;
+    padding-top: 100px;
+}
+
+#searchDiv {
+    display: flex;
+    justify-content: center;
+}
