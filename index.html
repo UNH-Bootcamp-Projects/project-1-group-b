@@ -6,13 +6,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Concert Cloud</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
   <script
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-  <link href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -26,17 +26,17 @@
       </p>
     </div>
   </section>
-  <div class="container is-fluid">
-    <div class="notification is-primary">
+  <section>
+    <div class="notification is-primary is-fullhd" id="searchDiv">
       <div class="field has-addons">
         <div class="control">
-          <input class="input is-medium search-input" type="date" placeholder="Medium input">
+          <input class="input is-medium search-input datePicker" type="date" placeholder="Medium input" id="datePicker">
         </div>
         <div class="control">
-          <input class="input" type="text" placeholder="Find a repository">
+          <input class="input searchInput" type="text" placeholder="Find a repository" id="searchInput">
         </div>
         <div class="control">
-          <div class="select dropdownContent">
+          <div class="select dropdownContent" id="dropdownContent">
             <select>
               <option>Select dropdown</option>
               <option>With options</option>
@@ -44,37 +44,19 @@
           </div>
         </div>
         <div class="control">
-          <a class="button is-info submitBtn">
+          <a class="button is-info submitBtn" id="submitBtn">
             Search
           </a>
         </div>
       </div>
     </div>
   </div>
-  </div>
-  <div class="results">
+  </section>
+  <div class="results has-text-centered tileDiv" id="tileDiv">
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child box">
           <p class="title">One</p>
-          <p class="subtitle">Subtitle</p>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <p class="title">Two</p>
-          <p class="subtitle">Subtitle</p>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <p class="title">Three</p>
-          <p class="subtitle">Subtitle</p>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <p class="title">Four</p>
           <p class="subtitle">Subtitle</p>
         </article>
       </div>
