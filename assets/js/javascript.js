@@ -1,51 +1,71 @@
 // variables
 var submitBtn = $(".submitBtn");
-var searchInputEl = $(".searchInput");
-var datePickerEl = $(".datePicker");
-var dropDownEl = $(".dropdownContent");
+var datePicker = $("#search-date");
+var genreSearch = $("#genre-input");
+var citySearch = $("#city-input");
 var daysDiv = $(".days-div");
 
 const api_url =
-  "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&city&radius&genre&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn";
+  "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&classificationName=music&sort=date,desc";
 
 async function getData() {
-  const response = await fetch(api_url);
+  const response = await fetch(
+    `${api_url}&city=${citySearch.val()}&classificationName=${genreSearch.val()}`
+  );
   const ticketData = await response.json();
   console.log(ticketData);
   console.log(response);
+  var events = ticketData._embedded.events;
+  if (datePicker.val()) {
+    events = events.filter(function (event) {
+      return new Date(event.dates.start.dateTime) >= new Date(datePicker.val());
+    });
+  }
+  console.log(events.length);
 
   daysDiv.empty();
 
   daysDiv.each((index, element) => {
-    daysDiv.css("background-color", "rgb(245, 240, 233)");
     element = $(element);
-    index = index;
 
     element.empty();
 
-    element.css("width", "100%");
-    element.css("height", "300px");
-
-    var promoter = $("<div>");
-    promoter.text(ticketData._embedded.events[index].promoter.name);
-
-    promoter.css("color", "grey");
-    element.append(promoter);
+    if (events.length <= index) {
+      var sorryDiv = $("<div>");
+      sorryDiv.text("NOT AVAILABLE");
+      element.append(sorryDiv);
+      return;
+    }
+    element.css({
+      display: "flex",
+      "flex-direction": "column",
+      "justify-content": "center",
+      "text-align": "center",
+      padding: "30px",
+      width: "100%",
+      height: "auto",
+      color: "grey",
+      "background-color": "rgb(245, 240, 233)",
+    });
 
     var dateDiv = $("<div>");
-    dateDiv.text(ticketData._embedded.events[index].dates.timezone);
-    dateDiv.css("color", "grey");
+    var date = new Date(events[index].dates.start.dateTime);
+    dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
     element.append(dateDiv);
 
     var nameDiv = $("<div>");
-    nameDiv.text(ticketData._embedded.events[index].name);
-    nameDiv.css("color", "grey");
+    nameDiv.text(events[index].name);
     element.append(nameDiv);
 
     var venueDiv = $("<div>");
-    venueDiv.text(ticketData._embedded.events[index]._embedded.venues[0].name);
-    venueDiv.css("color", "grey");
+    venueDiv.text(events[index]._embedded.venues[0].name);
     element.append(venueDiv);
+
+    var ticketDiv = $("<a>");
+    ticketDiv.text("Tickets");
+    ticketDiv.attr("href", events[index].url);
+    ticketDiv.attr("target", "_blank");
+    element.append(ticketDiv);
   });
 }
 
