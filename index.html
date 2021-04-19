@@ -12,38 +12,36 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-  <link href="assets/css/style.css">
+  <link href="./assets/css/style.css">
 </head>
 
 <body>
-  <section class="hero is-medium is-link">
-    <div class="hero-body">
-      <p class="title">
-        Medium hero
-      </p>
-      <p class="subtitle">
-        Medium subtitle
-      </p>
+  <section class="hero is-small">
+    <div class="hero-body has-text-centered" >
+      <img src="./assets/css/images/concertcloud.png" style="height: 400px; width: 400px;" alt="hero-background" class="hero-img">
     </div>
   </section>
-  <div class="container is-fluid">
-    <div class="notification is-primary">
+  <div class="container p-5 is-fluid has-background-white-ter">
+    <div class="notification is-full" style="width:100%;">
       <div class="field has-addons">
-        <div class="control">
-          <input class="input is-medium search-input" type="date" placeholder="Medium input">
+        <div class="control p-3">
+          <input class="input m-3" type="text" placeholder="search">
         </div>
-        <div class="control">
-          <input class="input" type="text" placeholder="Find a repository">
-        </div>
-        <div class="control">
-          <div class="select dropdownContent">
+        <div class="control p-3">
+          <div class="select dropdownContent m-3">
             <select>
-              <option>Select dropdown</option>
-              <option>With options</option>
+              <option>advanced search</option>
+              <option>radius</option>
+              <option>genre</option>
+
             </select>
           </div>
         </div>
-        <div class="control">
+        <div class="control p-3">
+          <input class="input is-medium search-input mt-3"  type="date" placeholder="Medium input">
+        </div>
+    
+        <div class="control p-3 mt-3">
           <a class="button is-info submitBtn">
             Search
           </a>
@@ -52,30 +50,32 @@
     </div>
   </div>
   </div>
-  <div class="results">
-    <div class="tile is-ancestor">
+  <div class="results m-5">
+    <div class="tile is-ancestor m-6">
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article class="tile is-child days-div">
           <p class="title">One</p>
-          <p class="subtitle">Subtitle</p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article class="tile is-child days-div">
           <p class="title">Two</p>
-          <p class="subtitle">Subtitle</p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article class="tile is-child days-div">
           <p class="title">Three</p>
-          <p class="subtitle">Subtitle</p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child box">
+        <article class="tile is-child days-div">
           <p class="title">Four</p>
-          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child days-div">
+          <p class="title">five</p>
+        
         </article>
       </div>
     </div>
