@@ -8,6 +8,12 @@ var daysDiv = $(".days-div");
 const api_url =
   "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&classificationName=music&sort=date,desc";
 
+const weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+  
+const oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?"
+
+const weatherKey = "0b34c0c779002825da1931b61289722d"
+
 async function getData() {
   const response = await fetch(
     `${api_url}&city=${citySearch.val()}&classificationName=${genreSearch.val()}`
@@ -67,6 +73,53 @@ async function getData() {
     ticketDiv.attr("target", "_blank");
     element.append(ticketDiv);
   });
+
+  getWeather()
+
+}
+
+function getWeather() {
+  console.log(`${weatherURL}${encodeURIComponent(citySearch.val())}&appid=${weatherKey}&units=imperial`)
+  fetch(`${weatherURL}${encodeURIComponent(citySearch.val())}&appid=${weatherKey}&units=imperial`)
+  .then(function(weatherResponse) {
+    if (!weatherResponse.ok) {
+      alert('City not found... Try again')
+    }
+    return weatherResponse.json();
+  })
+  .then (function (geoParse){
+    console.log(`${oneCallURL}lat=${geoParse.coord.lat}&lon=${geoParse.coord.lon}&exclude=current,minutely,hourly,alerts&appid=${weatherKey}&units=imperial`)
+    fetch(`${oneCallURL}lat=${geoParse.coord.lat}&lon=${geoParse.coord.lon}&exclude=current,minutely,hourly,alerts&appid=${weatherKey}&units=imperial`)
+    .then(function(forecastResponse) {
+      return forecastResponse.json();
+    })
+    .then (function (forecast) {
+      console.log(datePicker.val())
+      let today = dayjs().startOf('date');
+      let searchDate = dayjs(datePicker.val()).startOf('date')
+      let dateVal = searchDate.diff(today,'d')
+
+      console.log(dateVal)
+
+      console.log(forecast.daily[dateVal].temp.eve+' \u00B0F')
+      console.log(forecast.daily[dateVal].pop+'%')
+      console.log(forecast.daily[dateVal].pop*100+'%')
+      console.log(forecast.daily[dateVal].weather[0].id)
+
+      if(forecast.daily[dateVal].weather[0].id<600) {
+        console.log('its rainy')
+        
+      } else if(forecast.daily[dateVal].weather[0].id<700) {
+        console.log('its snowing')
+      } else if(forecast.daily[dateVal].weather[0].id<800) {
+        console.log('its weird')
+      } else if(forecast.daily[dateVal].weather[0].id<803) {
+        console.log('its clear')
+      } else {
+        console.log('its cloudy')
+      }
+    })
+  })
 }
 
 submitBtn.on("click", getData);
