@@ -48,21 +48,26 @@ async function getData() {
       "background-color": "rgb(245, 240, 233)",
     });
 
+    var nameDiv = $("<div>");
+    nameDiv.text(events[index]._embedded.attractions[0].name);
+    element.append(nameDiv);
+
+    var concertDiv = $("<img>");
+    concertDiv.attr("src", `${events[index].images[index].url}`);
+    console.log(concertDiv);
+    element.append(concertDiv);
+
     var dateDiv = $("<div>");
     var date = new Date(events[index].dates.start.dateTime);
     dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
     element.append(dateDiv);
-
-    var nameDiv = $("<div>");
-    nameDiv.text(events[index].name);
-    element.append(nameDiv);
 
     var venueDiv = $("<div>");
     venueDiv.text(events[index]._embedded.venues[0].name);
     element.append(venueDiv);
 
     var ticketDiv = $("<a>");
-    ticketDiv.text("Tickets");
+    ticketDiv.text("TICKETS");
     ticketDiv.attr("href", events[index].url);
     ticketDiv.attr("target", "_blank");
     element.append(ticketDiv);
@@ -70,3 +75,5 @@ async function getData() {
 }
 
 submitBtn.on("click", getData);
+
+///// search results arent matching with genre
