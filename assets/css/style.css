@@ -1,17 +1,205 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-#tileDiv {
-    margin-right: auto;
-    margin-left: auto;
-    width: 25%;
-    padding-top: 100px;
+body {
+	background-color: whitesmoke;
+	font-family: 'Poppins', sans-serif;
+}
+
+.hero-body {
+	background-color: #007bff;
+	text-align: center;
+	font-size: 2em;
+}
+
+.title {
+	font-size: 1.5em;
+	margin-top: -10px;
+}
+
+.fa-cloud {
+	font-size: 2em;
 }
 
 #searchDiv {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
+	background-color: whitesmoke;
+	border-radius: 0px;
+	padding-top: 50px;
+	margin-top: 25px;
+}
+
+#datePicker {
+	height: 50px;
+	width: 250px;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	font-size: 1.2em;
+	font-family: 'Poppins', sans-serif;
+}
+
+#searchInput {
+	height: 50px;
+	width: 500px;
+	font-size: 1.2em;
+	font-family: 'Poppins', sans-serif;
+}
+
+#selectSize {
+	width: 250px;
+	height: 50px;
+	font-size: 1.2em;
+	font-family: 'Poppins', sans-serif;
+}
+
+#selectDiv {
+	height: 50px;
+}
+
+#submitBtn {
+	height: 50px;
+	width: 125px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	background-color: #007bff;
+	font-size: 1.4em;
+	font-family: 'Poppins', sans-serif;
+}
+
+#submitBtn:hover {
+	background-color: #1d8aff;
+}
+
+#tileDiv {
+	background-color: whitesmoke;
+	padding-bottom: 100px;
+}
+
+#newTileDiv {
+	max-width: 1800px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.tile {
+	min-width: 250px;
+	min-height: 500px;
+}
+
+.newDiv {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+}
+
+.newDivOne {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 300px;
+	margin-left: -12px;
+}
+
+.newDivTwo {
+	width: 300px;
+	margin-left: -12px;
+	vertical-align: top;
+}
+
+.newDivThree {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 300px;
+	margin-left: -12px;
+}
+
+.newCard {
+	height: 500px;
+	min-width: 300px;
+	max-width: 300px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	font-size: 1.1em;
+}
+
+img {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+	margin-top: -12px;
+	margin-bottom: 10px;
+	width: 350px;
+	height: 200px;
+}
+
+.newDate {
+	font-weight: 400;
+	font-size: 1.2em;
+}
+
+.newTitle,
+.newLocation {
+	margin-bottom: 12px;
+}
+
+.newButton {
+	height: 50px;
+	width: 300px;
+	font-size: 1.2em;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	margin-bottom: -12px;
+	font-size: 1.2em;
+	cursor: pointer;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+}
+
+.newButton:hover {
+	background-color: #1d8aff;
+	font-size: 1.2em;
+}
+
+.deleteButton {
+	height: 50px;
+	width: 300px;
+	font-size: 1.2em;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	margin-bottom: -12px;
+	font-size: 1.2em;
+	cursor: pointer;
+	font-family: 'Poppins', sans-serif;
+	font-weight: 500;
+}
+
+.deleteButton:hover {
+	background-color: #1d8aff;
+	font-size: 1.2em;
+}
+
+.footer {
+	background-color: #007bff;
+	color: white;
+	font-size: 1.2em;
 }
