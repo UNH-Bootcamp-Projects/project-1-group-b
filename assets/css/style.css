@@ -67,12 +67,7 @@ body {
 	border-bottom-right-radius: 5px;
 	background-color: #007bff;
 	font-size: 1.4em;
-	font-family: 'Poppins', sans-serif;
-}
-
-#submitBtn:hover {
-	background-color: #1d8aff;
-}
+	font-family: 'Poppins', sans-serif; 
 
 #tileDiv {
 	background-color: whitesmoke;
