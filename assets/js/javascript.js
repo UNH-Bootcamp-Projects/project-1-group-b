@@ -113,16 +113,24 @@ function getWeather() {
 
       if(forecast.daily[dateVal].weather[0].id<600) {
         console.log('its rainy')
-        
+        $("#weatherImg").attr("style", "width: 100%; background-image: url(./assets/css/images/rain.jpg)")
       } else if(forecast.daily[dateVal].weather[0].id<700) {
         console.log('its snowing')
+        $("#weatherImg").attr("style", "width: 100%; background-image: url(./assets/css/images/snow.jpg)")
       } else if(forecast.daily[dateVal].weather[0].id<800) {
         console.log('its weird')
+        $("#weatherImg").attr("style", "width: 100%; background-image: url(./assets/css/images/cloudy.jpg)")
       } else if(forecast.daily[dateVal].weather[0].id<803) {
         console.log('its clear')
+        $("#weatherImg").attr("style", "width: 100%; background-image: url(./assets/css/images/clear.jpg)")
       } else {
         console.log('its cloudy')
+        $("#weatherImg").attr("style", "width: 100%; background-image: url(./assets/css/images/cloudy.jpg)")
       }
+
+      
+      
+    
     })
   })
 }
