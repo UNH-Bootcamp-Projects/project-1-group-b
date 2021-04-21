@@ -1,9 +1,11 @@
 // variables
 var submitBtn = $(".submitBtn");
-
 var genreSearch = $("#genre-input");
 var citySearch = $("#city-input");
 var daysDiv = $(".days-div");
+var dropdownBtn = $(".dropdown-content");
+var genreSelect = "";
+var dropdownSelection = $("#dropdown-selection");
 
 // function handleSaveEvent() {
 // 	const event = JSON.parse(this.getAttribute('data-event'));
@@ -25,8 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 const api_url =
-  "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&classificationName=music&sort=date,asc";
+  "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&sort=date,asc";
 
+dropdownBtn.on("click", "a", function () {
+  genreSelect = $(this).text();
+});
 const weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 
 const oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?";
@@ -34,7 +39,9 @@ const oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?";
 const weatherKey = "0b34c0c779002825da1931b61289722d";
 
 async function getData() {
-  const response = await fetch(`${api_url}&city=${citySearch.val()}`);
+  const response = await fetch(
+    `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.trim()}`
+  );
   const ticketData = await response.json();
   console.log(ticketData);
   console.log(response);
@@ -167,4 +174,3 @@ submitBtn.on("click", getData);
 // 	});
 
 ///// search results arent matching with genre
-
