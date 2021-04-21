@@ -7,6 +7,8 @@ var dropdownBtn = $(".dropdown-content");
 var genreSelect = "";
 var dropdownSelection = $("#dropdown-selection");
 
+var tempAr = [];
+
 // function handleSaveEvent() {
 // 	const event = JSON.parse(this.getAttribute('data-event'));
 // 	savedEvents.push(event);
@@ -39,6 +41,7 @@ const oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?";
 const weatherKey = "0b34c0c779002825da1931b61289722d";
 
 async function getData() {
+  getWeather();
   const response = await fetch(
     `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.trim()}`
   );
@@ -105,7 +108,7 @@ async function getData() {
     element.append(ticketDiv);
   });
 
-  getWeather();
+  
 }
 
 function getWeather() {
@@ -136,29 +139,40 @@ function getWeather() {
           return forecastResponse.json();
         })
         .then(function (forecast) {
-          console.log(datePicker.val());
-          let today = dayjs().startOf("date");
-          let searchDate = dayjs(datePicker.val()).startOf("date");
-          let dateVal = searchDate.diff(today, "d");
 
-          console.log(dateVal);
-
-          console.log(forecast.daily[dateVal].temp.eve + " \u00B0F");
-          console.log(forecast.daily[dateVal].pop + "%");
-          console.log(forecast.daily[dateVal].pop * 100 + "%");
-          console.log(forecast.daily[dateVal].weather[0].id);
-
-          if (forecast.daily[dateVal].weather[0].id < 600) {
-            console.log("its rainy");
-          } else if (forecast.daily[dateVal].weather[0].id < 700) {
-            console.log("its snowing");
-          } else if (forecast.daily[dateVal].weather[0].id < 800) {
-            console.log("its weird");
-          } else if (forecast.daily[dateVal].weather[0].id < 803) {
-            console.log("its clear");
-          } else {
-            console.log("its cloudy");
+          for(let i=1; i<forecast.daily.length; i++) {
+            console.log(forecast.daily[i].temp.eve + " \u00B0F");
+            console.log(forecast.daily[i].pop + "%");
+            console.log(forecast.daily[i].pop * 100 + "%");
+            console.log(forecast.daily[i].weather[0].id);
+            tempAr.push(forecast.daily[i].temp.eve + " \u00B0F")
           }
+          console.log(tempAr)
+
+
+          // console.log(datePicker.val());
+          // let today = dayjs().startOf("date");
+          // let searchDate = dayjs(datePicker.val()).startOf("date");
+          // let dateVal = searchDate.diff(today, "d");
+
+          // console.log(dateVal);
+
+          // console.log(forecast.daily[dateVal].temp.eve + " \u00B0F");
+          // console.log(forecast.daily[dateVal].pop + "%");
+          // console.log(forecast.daily[dateVal].pop * 100 + "%");
+          // console.log(forecast.daily[dateVal].weather[0].id);
+
+          // if (forecast.daily[dateVal].weather[0].id < 600) {
+          //   console.log("its rainy");
+          // } else if (forecast.daily[dateVal].weather[0].id < 700) {
+          //   console.log("its snowing");
+          // } else if (forecast.daily[dateVal].weather[0].id < 800) {
+          //   console.log("its weird");
+          // } else if (forecast.daily[dateVal].weather[0].id < 803) {
+          //   console.log("its clear");
+          // } else {
+          //   console.log("its cloudy");
+          // }
         });
     });
 }
