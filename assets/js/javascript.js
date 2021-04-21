@@ -5,6 +5,12 @@ var genreSearch = $("#genre-input");
 var citySearch = $("#city-input");
 var daysDiv = $(".days-div");
 
+// function handleSaveEvent() {
+// 	const event = JSON.parse(this.getAttribute('data-event'));
+// 	savedEvents.push(event);
+// 	localStorage.setItem('savedEvents', JSON.stringify(savedEvents));
+// }
+
 const api_url =
   "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&classificationName=music&sort=date,asc";
 
@@ -16,7 +22,7 @@ const weatherKey = "0b34c0c779002825da1931b61289722d";
 
 async function getData() {
   const response = await fetch(
-    `${api_url}&city=${citySearch.val()}&classificationName=${genreSearch.val()}`
+    `${api_url}&city=${citySearch.val()}&genreId=${genreSearch.val()}`
   );
   const ticketData = await response.json();
   console.log(ticketData);
@@ -139,4 +145,15 @@ function getWeather() {
 
 submitBtn.on("click", getData);
 
+
+displayEvents(savedEvents);
+document.querySelector('#seardchInput')
+	.addEventListener('keydown', function (event) {
+		if (event.keyCode == 13) {
+			getApi();
+		}
+	});
+
+
 ///// search results arent matching with genre
+
