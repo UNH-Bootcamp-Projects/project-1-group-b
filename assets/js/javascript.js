@@ -1,6 +1,6 @@
 // variables
 var submitBtn = $(".submitBtn");
-var datePicker = $("#search-date");
+
 var genreSearch = $("#genre-input");
 var citySearch = $("#city-input");
 var daysDiv = $(".days-div");
@@ -10,6 +10,19 @@ var daysDiv = $(".days-div");
 // 	savedEvents.push(event);
 // 	localStorage.setItem('savedEvents', JSON.stringify(savedEvents));
 // }
+
+//DOMContentLoaded - it fires when initial HTML document has been completely loaded
+document.addEventListener("DOMContentLoaded", function () {
+  // querySelector - it returns the element within the document that matches the specified selector
+  var dropdown = document.querySelector(".dropdown");
+  //addEventListener - attaches an event handler to the specified element.
+  dropdown.addEventListener("click", function (event) {
+    //event.stopPropagation() - it stops the bubbling of an event to parent elements, by preventing parent event handlers from being executed
+    event.stopPropagation();
+    //classList.toggle - it toggles between adding and removing a class name from an element
+    dropdown.classList.toggle("is-active");
+  });
+});
 
 const api_url =
   "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&classificationName=music&sort=date,asc";
@@ -21,18 +34,12 @@ const oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?";
 const weatherKey = "0b34c0c779002825da1931b61289722d";
 
 async function getData() {
-  const response = await fetch(
-    `${api_url}&city=${citySearch.val()}&genreId=${genreSearch.val()}`
-  );
+  const response = await fetch(`${api_url}&city=${citySearch.val()}`);
   const ticketData = await response.json();
   console.log(ticketData);
   console.log(response);
   var events = ticketData._embedded.events;
-  if (datePicker.val()) {
-    events = events.filter(function (event) {
-      return new Date(event.dates.start.dateTime) >= new Date(datePicker.val());
-    });
-  }
+
   console.log(events.length);
 
   daysDiv.empty();
@@ -145,15 +152,13 @@ function getWeather() {
 
 submitBtn.on("click", getData);
 
-
-displayEvents(savedEvents);
-document.querySelector('#seardchInput')
-	.addEventListener('keydown', function (event) {
-		if (event.keyCode == 13) {
-			getApi();
-		}
-	});
-
+// displayEvents(savedEvents);
+// document.querySelector('#seardchInput')
+// 	.addEventListener('keydown', function (event) {
+// 		if (event.keyCode == 13) {
+// 			getApi();
+// 		}
+// 	});
 
 ///// search results arent matching with genre
 
