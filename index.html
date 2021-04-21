@@ -11,46 +11,35 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
-  <link rel = "icon" href = "assets/images/icon.png" type = "image/x-icon">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
-  <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+
+  <!--load dayjs  -->
+  <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+  <link href="./assets/css/style.css">
 </head>
 
 <body>
-  <section class="hero is-medium is-link" id="hero">
-    <div class="hero-body">
-      <i class="fas fa-cloud"></i>
-      <p class="title">
-        Concert Cloud
-      </p>
+  <section class="hero is-small">
+    <div class="hero-body has-text-centered" >
+      <img src="./assets/css/images/concertcloud.png" style="height: 400px; width: 400px;" alt="hero-background" class="hero-img">
     </div>
   </section>
 
-  <section>
-    <div class="notification is-primary is-fullhd" id="searchDiv">
-      <div class="field has-addons" id="addonField">
-        <div class="control">
-          <input class="input is-medium search-input datePicker" type="date" placeholder="Medium input" id="datePicker">
+  <div class="container has-background-white-ter">
+    <div class="notification is-full" style="width:100%; background-image: url(./assets/css/images/concert-crowd.png)">
+      <div class="field has-addons">
+        <div class="control p-3">
+          <input id="city-input" class="input m-3" type="text" placeholder="City">
         </div>
-        <div class="control">
-          <input class="input searchInput" type="text" placeholder="Search concerts by location, artists, bands, genre..." id="searchInput">
+        <div class="control p-3">
+          <input id="genre-input" class="input m-3" type="text" placeholder="Genre">
         </div>
-        <div class="control" id="new">
-          <div class="select" id="selectDiv">
-            <select id="selectSize">
-              <option>Select options</option>
-              <option>Option #1</option>
-              <option>Option #2</option>
-              <option>Option #3</option>
-              <option>Option #4</option>
-              <option>Option #5</option>
-            </select>
-          </div>
+        <div class="control p-3">
+          <input id="search-date" class="input is-medium mt-3"  type="date" placeholder="Medium input">
         </div>
-        <div class="control">
-          <a class="button is-info submitBtn" id="submitBtn">
+    
+        <div class="control p-3 mt-3">
+          <a class="button is-info submitBtn">
+
             Search
           </a>
         </div>
@@ -63,11 +52,40 @@
     <div class="tile is-ancestor" id="newTileDiv"></div>
   </div>
 
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        Copyright© 2021 Team Cloud Concert
-      </p>
+  <div class="results" style="margin: 0 50px 0 50px; padding: 100px;">
+    <div class="tile is-ancestor m-6" style="text-align: center;">
+      <div class="tile is-parent">
+        <article class="tile is-child days-div">
+          <p class="title">DAY 1</p>
+          <img src="./assets/css/images/concertcloud.png" alt="concert-cloud-logo">
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child days-div">
+          <p class="title">DAY 2</p>
+                    <img src="./assets/css/images/concertcloud.png" alt="concert-cloud-logo">
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child days-div">
+          <p class="title">DAY 3</p>
+                    <img src="./assets/css/images/concertcloud.png" alt="concert-cloud-logo">
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child days-div">
+          <p class="title">DAY 4</p>
+                    <img src="./assets/css/images/concertcloud.png" alt="concert-cloud-logo">
+        </article>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child days-div">
+          <p class="title">DAY 5</p>
+                    <img src="./assets/css/images/concertcloud.png" alt="concert-cloud-logo">
+        
+        </article>
+      </div>
+
     </div>
   </footer>
 
