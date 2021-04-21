@@ -58,7 +58,7 @@ async function getData() {
     element.css({
       display: "flex",
       "flex-direction": "column",
-      "justify-content": "center",
+      "justify-content": "start",
       "text-align": "center",
       padding: "30px",
       width: "100%",
@@ -66,6 +66,12 @@ async function getData() {
       color: "grey",
       "background-color": "rgb(245, 240, 233)",
     });
+
+    var dateDiv = $("<div>");
+    var dateEl = $("<p>").css({"font-size": "large", "font-weight": "bold"})
+    dateEl.text(dayjs().add((index+1),'day').format('MMMM D, YYYY'));
+    element.append(dateDiv)
+    dateDiv.append(dateEl)
 
     var nameDiv = $("<div>");
     nameDiv.text(events[index]._embedded.attractions[0].name);
