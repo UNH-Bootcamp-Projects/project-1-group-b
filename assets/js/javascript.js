@@ -1,37 +1,159 @@
 // variables
 var submitBtn = $(".submitBtn");
-var searchInputEl = $(".searchInput");
+var datePicker = $("#search-date");
+var genreSearch = $("#genre-input");
+var citySearch = $("#city-input");
+var daysDiv = $(".days-div");
 
-// functions
+// function handleSaveEvent() {
+// 	const event = JSON.parse(this.getAttribute('data-event'));
+// 	savedEvents.push(event);
+// 	localStorage.setItem('savedEvents', JSON.stringify(savedEvents));
+// }
 
-function getData(cityName) {
-  // fetch both API's
-  return new Promise(function (resolve, reject) {
-    fetch(
-      `https://app.ticketmaster.com/discovery/v2/events.json?countryCode=US&city=${cityName}&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn`
-    )
-      .then(function (responseTicket) {
-        return responseTicket.json();
-      })
-      .then(function (ticketData) {
-        console.log(ticketData._embedded.events[0]);
-      });
+const api_url =
+  "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&classificationName=music&sort=date,asc";
+
+const weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
+
+const oneCallURL = "https://api.openweathermap.org/data/2.5/onecall?";
+
+const weatherKey = "0b34c0c779002825da1931b61289722d";
+
+async function getData() {
+  const response = await fetch(
+    `${api_url}&city=${citySearch.val()}&genreId=${genreSearch.val()}`
+  );
+  const ticketData = await response.json();
+  console.log(ticketData);
+  console.log(response);
+  var events = ticketData._embedded.events;
+  if (datePicker.val()) {
+    events = events.filter(function (event) {
+      return new Date(event.dates.start.dateTime) >= new Date(datePicker.val());
+    });
+  }
+  console.log(events.length);
+
+  daysDiv.empty();
+
+  daysDiv.each((index, element) => {
+    element = $(element);
+
+    element.empty();
+
+    if (events.length <= index) {
+      var sorryDiv = $("<div>");
+      sorryDiv.text("NOT AVAILABLE");
+      element.append(sorryDiv);
+      return;
+    }
+    element.css({
+      display: "flex",
+      "flex-direction": "column",
+      "justify-content": "center",
+      "text-align": "center",
+      padding: "30px",
+      width: "100%",
+      height: "auto",
+      color: "grey",
+      "background-color": "rgb(245, 240, 233)",
+    });
+
+    var nameDiv = $("<div>");
+    nameDiv.text(events[index]._embedded.attractions[0].name);
+    element.append(nameDiv);
+
+    var concertDiv = $("<img>");
+    concertDiv.attr("src", `${events[index].images[index].url}`);
+    console.log(concertDiv);
+    element.append(concertDiv);
+
+    var dateDiv = $("<div>");
+    var date = new Date(events[index].dates.start.dateTime);
+    dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
+    element.append(dateDiv);
+
+    var venueDiv = $("<div>");
+    venueDiv.text(events[index]._embedded.venues[0].name);
+    element.append(venueDiv);
+
+    var ticketDiv = $("<a>");
+    ticketDiv.text("TICKETS");
+    ticketDiv.attr("href", events[index].url);
+    ticketDiv.attr("target", "_blank");
+    element.append(ticketDiv);
   });
 
-var datePickerEl = $(".datePicker");
-var dropDownEl = $(".dropdownContent");
-
-  fetch(
-    'http://api.weatherstack.com/forecast?access_key=43c0e4c4f816398c7b97a3b59817de2b&query='+encodeURIComponent('New York')+'&forecast_days=1'
-  )
-  .then(function (responseWeather) {
-    return responseWeather.json();
-  })
-  .then(function (weatherData){
-    console.log(weatherData);
-  }) 
+  getWeather();
 }
 
-// getData();
+function getWeather() {
+  console.log(
+    `${weatherURL}${encodeURIComponent(
+      citySearch.val()
+    )}&appid=${weatherKey}&units=imperial`
+  );
+  fetch(
+    `${weatherURL}${encodeURIComponent(
+      citySearch.val()
+    )}&appid=${weatherKey}&units=imperial`
+  )
+    .then(function (weatherResponse) {
+      if (!weatherResponse.ok) {
+        alert("City not found... Try again");
+      }
+      return weatherResponse.json();
+    })
+    .then(function (geoParse) {
+      console.log(
+        `${oneCallURL}lat=${geoParse.coord.lat}&lon=${geoParse.coord.lon}&exclude=current,minutely,hourly,alerts&appid=${weatherKey}&units=imperial`
+      );
+      fetch(
+        `${oneCallURL}lat=${geoParse.coord.lat}&lon=${geoParse.coord.lon}&exclude=current,minutely,hourly,alerts&appid=${weatherKey}&units=imperial`
+      )
+        .then(function (forecastResponse) {
+          return forecastResponse.json();
+        })
+        .then(function (forecast) {
+          console.log(datePicker.val());
+          let today = dayjs().startOf("date");
+          let searchDate = dayjs(datePicker.val()).startOf("date");
+          let dateVal = searchDate.diff(today, "d");
 
-submitBtn.on('click',getData)
+          console.log(dateVal);
+
+          console.log(forecast.daily[dateVal].temp.eve + " \u00B0F");
+          console.log(forecast.daily[dateVal].pop + "%");
+          console.log(forecast.daily[dateVal].pop * 100 + "%");
+          console.log(forecast.daily[dateVal].weather[0].id);
+
+          if (forecast.daily[dateVal].weather[0].id < 600) {
+            console.log("its rainy");
+          } else if (forecast.daily[dateVal].weather[0].id < 700) {
+            console.log("its snowing");
+          } else if (forecast.daily[dateVal].weather[0].id < 800) {
+            console.log("its weird");
+          } else if (forecast.daily[dateVal].weather[0].id < 803) {
+            console.log("its clear");
+          } else {
+            console.log("its cloudy");
+          }
+        });
+    });
+}
+
+submitBtn.on("click", getData);
+
+
+displayEvents(savedEvents);
+document.querySelector('#seardchInput')
+	.addEventListener('keydown', function (event) {
+		if (event.keyCode == 13) {
+			getApi();
+		}
+	});
+
+
+///// search results arent matching with genre
+
