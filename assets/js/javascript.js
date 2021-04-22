@@ -22,6 +22,7 @@ const weatherURL = `https://weather.visualcrossing.com/VisualCrossingWebServices
 const weatherKey = "3AP2W24SGPFQY452VWE3UJ6UD"
 
 async function getData() {
+
   const response = await fetch(
     `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.val()}`
   );
@@ -116,8 +117,16 @@ async function getData() {
         weatherDiv.append(weatherEl);
 
       })
+    
   });
+  //content is now displayed with the response we received after on click event handler
+  $(".results").show();
+  $(".weather-results").show();  
 }
+
+//hides the content when page loads.
+$(".results").hide();
+$(".weather-results").hide();
 
 submitBtn.on("click", getData);
 
