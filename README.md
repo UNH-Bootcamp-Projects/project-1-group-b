@@ -10,7 +10,7 @@ Concert Cloud
 *** 
 ## User Stories
 - As Billy Bob, I want to check what country concerts are in the area, so that I can buy tickets
-- As Sophia, I want to check the weather on a date of a concert, so i can plan my outfit accordingly
+- As Sophia, I want to check the weather on a date of a concert, so I can plan my outfit accordingly
 ***
 ## Features
 - Search upcoming concerts in a specific city
