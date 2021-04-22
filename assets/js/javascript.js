@@ -42,6 +42,17 @@ async function getData() {
 
     if (events.length <= index) {
       var sorryDiv = $("<div>");
+      sorryDiv.css({
+        display: "flex",
+        "flex-direction": "column",
+        "justify-content": "start",
+        "text-align": "center",
+        padding: "30px",
+        width: "100%",
+        height: "fit-content",
+        color: "grey",
+        "background-color": "rgb(245, 240, 233)",
+      });
       sorryDiv.text("NOT AVAILABLE");
       element.append(sorryDiv);
       return;
@@ -73,6 +84,10 @@ async function getData() {
     var date = new Date(events[index].dates.start.dateTime);
     dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
     element.append(dateDiv);
+
+    var timeDiv = $("<div>");
+    timeDiv.text(events[index].dates.localTime);
+    element.append(timeDiv);
 
     var venueDiv = $("<div>");
     venueDiv.text(events[index]._embedded.venues[0].name);

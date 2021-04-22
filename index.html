@@ -10,9 +10,9 @@
       src="https://code.jquery.com/jquery-3.6.0.min.js"
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
-    ></script>
-
-  <!--load dayjs  -->
+  ></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/300454e470.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
   <link href="./assets/css/style.css">
@@ -27,34 +27,54 @@
     <div class="notification is-full" style="width:100%; background-image: url(./assets/css/images/concert-crowd.png)">
       <div class="field has-addons">
         <div class="control p-3">
-          <input id="city-input" class="input m-3" type="text" placeholder="City">
+          <input id="city-input" class="input m-3" style="border-radius: 7px;" type="text" placeholder="City">
         </div>
         <div class="field p-3 m-3">
-          <div class="control">
+          <div class="control is-warning is-light">
             <div class="select ">
-              <select name="genre" class="genre-select">
+              <select name="genre" style="border-radius: 7px; color: rgb(194, 194, 194);" class="genre-select">
                 <option>Genre</option>
-                <option>Rock</option>
-                <option>Hip-Hop/Rap</option>
+                <option>Alternative</option>
+                <option>Blues</option>
+                <option>Classical</option>
+                <option>Country</option>
+                <option>Dance/Electronic</option>
                 <option>Folk</option>
+                <option>Hip-Hop/Rap</option>
+                <option>Jazz</option>
                 <option>Latin</option>
                 <option>Metal</option>
-                <option>Country</option>
-                <option>Classical</option>
+                <option>Other</option>
+                <option>Pop</option>
+                <option>Reggae</option>
+                <option>Rock</option>
+                <option>World</option>
               </select>
             </div>
           </div>
         </div>
         <div class="control p-3 mt-3">
-          <a class="button is-info submitBtn">
-            Search
-          </a>
+          <button class="button is-light submitBtn" style="border-radius:7px; color: rgb(125, 125, 125);">
+              Search
+          </button>
         </div>
       </div>
     </div>
   </div>
   </div>
+
   <div class="results" style="margin: 0 50px 0 50px;">
+
+
+    <div class="tile is-ancestor mt-6" style="text-align: center;">
+      <div class="tile is-parent">
+        <article class="tile is-child concert-name-div">
+          <p class="title" style="font-size: 55px; font-family: 'Montserrat', sans-serif; color: rgb(187, 150, 111);">Concerts</p>
+
+        </article>
+      </div>
+   
+  </div>
     <div class="tile is-ancestor m-6" style="text-align: center;">
       <div class="tile is-parent">
         <article class="tile is-child days-div">
