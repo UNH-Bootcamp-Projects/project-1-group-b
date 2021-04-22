@@ -8,12 +8,6 @@ var dropdownBtn = $(".dropdown-content");
 var genreSelect = $(".genre-select");
 var dropdownSelection = $("#dropdown-selection");
 
-// function handleSaveEvent() {
-// 	const event = JSON.parse(this.getAttribute('data-event'));
-// 	savedEvents.push(event);
-// 	localStorage.setItem('savedEvents', JSON.stringify(savedEvents));
-// }
-
 const api_url =
     "https://app.ticketmaster.com/discovery/v2/events.json?{id}/images&countryCode=US&apikey=D9il0k2ZQ5sNHnlsKYHApQEcivKsruvn&sort=date,asc&size=5";
 
@@ -21,8 +15,18 @@ const weatherURL = `https://weather.visualcrossing.com/VisualCrossingWebServices
 
 const weatherKey = "3AP2W24SGPFQY452VWE3UJ6UD"
 
-async function getData() {
+let history = JSON.parse(localStorage.getItem('searchHistory'));
+if(history != null) {
+    citySearch.val(history[0])
+    genreSelect.val(history[1])
+    getData();
+};
 
+async function getData() {
+    history = [];
+    history.push(citySearch.val());
+    history.push(genreSelect.val());
+    localStorage.setItem('searchHistory', JSON.stringify(history));
     const response = await fetch(
         `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.val()}`
     );
@@ -126,11 +130,3 @@ $(".results").hide();
 $(".weather-results").hide();
 
 submitBtn.on("click", getData);
-
-// displayEvents(savedEvents);
-// document.querySelector('#seardchInput')
-// 	.addEventListener('keydown', function (event) {
-// 		if (event.keyCode == 13) {
-// 			getApi();
-// 		}
-// 	});
