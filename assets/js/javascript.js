@@ -33,7 +33,6 @@ async function getData() {
 
     console.log(events.length);
 
-
     daysDiv.empty();
 
     daysDiv.each((index, element) => {
@@ -115,9 +114,7 @@ async function getData() {
                 var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic" });
                 element.append(weatherDiv);
                 weatherDiv.append(weatherEl);
-
             })
-
     });
     //content is now displayed with the response we received after on click event handler
     $(".results").show();
@@ -137,5 +134,3 @@ submitBtn.on("click", getData);
 // 			getApi();
 // 		}
 // 	});
-
-///// search results arent matching with genre
