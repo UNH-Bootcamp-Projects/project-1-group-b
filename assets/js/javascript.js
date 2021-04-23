@@ -156,7 +156,7 @@ async function getData() {
                 return weatherResponse.json();
             })
             .then(function(forecast) {
-                console.log(forecast)
+
                 var weatherDiv = $("<div>").css({"margin-top": "auto"});
                 var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic", "font-size": "1.25rem"});
                 element.append(weatherDiv);
