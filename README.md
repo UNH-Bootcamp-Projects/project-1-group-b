@@ -41,9 +41,10 @@ Concert Cloud was created using:
 - Git issues and Kanban tasks to manage project work daily
 ***
 ## Screenshots
-![Concert Cloud Logo as a placeholder](assets/css/images/concertcloud.png)
+![Concert Cloud Landing Page](https://user-images.githubusercontent.com/59030105/115934167-67c86700-a45e-11eb-8330-747a9d3b27ec.png)
 ***
 ## URL
-
+- [Concert Cloud](https://unh-bootcamp-projects.github.io/project-1-group-b/)
+- [Repository](https://github.com/UNH-Bootcamp-Projects/project-1-group-b)
 
 
