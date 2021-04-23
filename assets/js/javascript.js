@@ -70,7 +70,7 @@ async function getData() {
   $(".weather-results").show();
     return
   }
-  
+    
     var events = ticketData._embedded.events;
 
     daysDiv.empty();
@@ -122,8 +122,7 @@ async function getData() {
         element.append(concertDiv);
 
         var dateDiv = $("<div>");
-        var date = new Date(events[index].dates.start.dateTime);
-        dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
+        dateDiv.text(dayjs(events[index].dates.start.dateTime).format("ddd MMM D, YYYY"));
         element.append(dateDiv);
 
         var timeDiv = $("<div>");
@@ -158,8 +157,8 @@ async function getData() {
             })
             .then(function(forecast) {
 
-                var weatherDiv = $("<div>");
-                var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic" });
+                var weatherDiv = $("<div>").css({"margin-top": "auto"});
+                var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic", "font-size": "1.25rem"});
                 element.append(weatherDiv);
                 weatherDiv.append(weatherEl);
             })
