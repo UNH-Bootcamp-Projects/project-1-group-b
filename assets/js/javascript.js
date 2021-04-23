@@ -31,8 +31,6 @@ async function getData() {
         `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.val()}`
     );
     const ticketData = await response.json();
-    console.log(ticketData);
-    console.log(response);
 
     if (ticketData.page.totalElements === 0 || citySearch.val() === "") {
       daysDiv.each((index, element) => {
@@ -74,8 +72,6 @@ async function getData() {
   }
   
     var events = ticketData._embedded.events;
-
-    console.log(events.length);
 
     daysDiv.empty();
 
@@ -123,7 +119,6 @@ async function getData() {
         var concertDiv = $("<img>");
         concertDiv.css({ "margin-top": "12px", "margin-bottom": "12px" });
         concertDiv.attr("src", `${events[index].images[index].url}`);
-        console.log(concertDiv);
         element.append(concertDiv);
 
         var dateDiv = $("<div>");
