@@ -44,6 +44,18 @@ async function getData() {
 
         element.empty();
 
+        element.css({
+          display: "flex",
+          "flex-direction": "column",
+          "justify-content": "start",
+          "text-align": "center",
+          padding: "30px",
+          width: "100%",
+          height: "auto",
+          color: "grey",
+          "background-color": "rgb(245, 240, 233)",
+      });
+      
         if (events.length <= index) {
             var sorryDiv = $("<div>");
             sorryDiv.css({
@@ -61,17 +73,7 @@ async function getData() {
             element.append(sorryDiv);
             return;
         }
-        element.css({
-            display: "flex",
-            "flex-direction": "column",
-            "justify-content": "start",
-            "text-align": "center",
-            padding: "30px",
-            width: "100%",
-            height: "auto",
-            color: "grey",
-            "background-color": "rgb(245, 240, 233)",
-        });
+
 
         var nameDiv = $("<div>");
         nameDiv.css({ "font-size": "large", "font-weight": "bold" });
@@ -110,6 +112,8 @@ async function getData() {
           marginLeft: "auto",
           marginRight: "auto",
           width: "8em",
+        })
+        element.append(ticketDiv);
 
         fetch(
                 `${weatherURL}/${encodeURIComponent(citySearch.val())}/${events[index].dates.start.localDate}?key=${weatherKey}`
@@ -130,30 +134,6 @@ async function getData() {
 
     });
 
-    element.append(ticketDiv);
-
-    fetch(
-      `${weatherURL}/${encodeURIComponent(citySearch.val())}/${
-        events[index].dates.start.localDate
-      }?key=${weatherKey}`
-    )
-      .then(function (weatherResponse) {
-        if (!weatherResponse.ok) {
-          alert("City not found... Try again");
-        }
-        return weatherResponse.json();
-      })
-      .then(function (forecast) {
-        var weatherDiv = $("<div>");
-        var weatherEl = $("<p>")
-          .text(
-            `Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`
-          )
-          .css({ "font-style": "italic" });
-        element.append(weatherDiv);
-        weatherDiv.append(weatherEl);
-      });
-  });
   //content is now displayed with the response we received after on click event handler
   $(".results").show();
   $(".weather-results").show();
