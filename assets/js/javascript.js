@@ -31,7 +31,7 @@ async function getData() {
         `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.val()}`
     );
     const ticketData = await response.json();
-
+    console.log(ticketData)
     if (ticketData.page.totalElements === 0 || citySearch.val() === "") {
       daysDiv.each((index, element) => {
         element = $(element);
@@ -70,7 +70,7 @@ async function getData() {
   $(".weather-results").show();
     return
   }
-  
+    
     var events = ticketData._embedded.events;
 
     daysDiv.empty();
@@ -122,8 +122,7 @@ async function getData() {
         element.append(concertDiv);
 
         var dateDiv = $("<div>");
-        var date = new Date(events[index].dates.start.dateTime);
-        dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
+        dateDiv.text(dayjs(events[index].dates.start.dateTime).format("ddd MMM D, YYYY"));
         element.append(dateDiv);
 
         var timeDiv = $("<div>");
@@ -157,9 +156,9 @@ async function getData() {
                 return weatherResponse.json();
             })
             .then(function(forecast) {
-
-                var weatherDiv = $("<div>");
-                var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic" });
+                console.log(forecast)
+                var weatherDiv = $("<div>").css({"margin-top": "auto"});
+                var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic", "font-size": "1.25rem"});
                 element.append(weatherDiv);
                 weatherDiv.append(weatherEl);
             })
