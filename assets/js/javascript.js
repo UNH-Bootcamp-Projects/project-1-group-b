@@ -33,6 +33,46 @@ async function getData() {
     const ticketData = await response.json();
     console.log(ticketData);
     console.log(response);
+
+    if (ticketData.page.totalElements === 0) {
+      daysDiv.each((index, element) => {
+        element = $(element);
+
+        element.empty();
+
+        element.css({
+          display: "flex",
+          "flex-direction": "column",
+          "justify-content": "start",
+          "text-align": "center",
+          padding: "30px",
+          width: "100%",
+          height: "auto",
+          color: "grey",
+          "background-color": "rgb(245, 240, 233)",
+      });
+
+      var errorDiv = $("<div>");
+      errorDiv.css({
+          display: "flex",
+          "flex-direction": "column",
+          "justify-content": "start",
+          "text-align": "center",
+          padding: "30px",
+          width: "100%",
+          height: "fit-content",
+          color: "grey",
+          "background-color": "rgb(245, 240, 233)",
+      });
+      errorDiv.text("No concerts in your search");
+      element.append(errorDiv);
+    })
+      //content is now displayed with the response we received after on click event handler
+  $(".results").show();
+  $(".weather-results").show();
+    return
+  }
+  
     var events = ticketData._embedded.events;
 
     console.log(events.length);
@@ -119,9 +159,6 @@ async function getData() {
                 `${weatherURL}/${encodeURIComponent(citySearch.val())}/${events[index].dates.start.localDate}?key=${weatherKey}`
             )
             .then(function(weatherResponse) {
-                if (!weatherResponse.ok) {
-                    alert("City not found... Try again");
-                }
                 return weatherResponse.json();
             })
             .then(function(forecast) {
