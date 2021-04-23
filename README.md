@@ -1,4 +1,4 @@
-# project-1-group-b
+# Concert Cloud
 ## Concert Cloud Development Team Members
 [Tracy Angell](https://github.com/tracye1083), [David Bernard](https://github.com/dbernard87), [Brendan Kurylo](https://github.com/Bkrendan12) & [Luke Teal](https://github.com/luketeal)
 ***
