@@ -31,7 +31,7 @@ async function getData() {
         `${api_url}&city=${citySearch.val()}&classificationName=${genreSelect.val()}`
     );
     const ticketData = await response.json();
-    console.log(ticketData)
+
     if (ticketData.page.totalElements === 0 || citySearch.val() === "") {
       daysDiv.each((index, element) => {
         element = $(element);
