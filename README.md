@@ -6,10 +6,15 @@
 Concert Cloud
 ***
 ## Description
+Are you waiting for the pandemic to end so you can see your favorite bands live like the good old days? 
+Are you sick of showing up to the concert and it's pouring rain? 
+Well it seems that our world is finally starting to open up more and more and that means concerts are being booked again! 
+If you want to see the available upcoming concerts in any city by the genre of your choice, as well as the weather conditions of that day….then THIS application is the simplest way to do that. 
+Check out Concert Cloud!
 
 *** 
 ## User Stories
-- As Billy Bob, I want to check what country concerts are in the area, so that I can buy tickets
+- As Bobby Ray, I want to check what country concerts are in the area, so that I can buy tickets
 - As Sophia, I want to check the weather on a date of a concert, so I can plan my outfit accordingly
 ***
 ## Features
