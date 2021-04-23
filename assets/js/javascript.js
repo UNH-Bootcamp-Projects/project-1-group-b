@@ -34,7 +34,7 @@ async function getData() {
     console.log(ticketData);
     console.log(response);
 
-    if (ticketData.page.totalElements === 0) {
+    if (ticketData.page.totalElements === 0 || citySearch.val() === "") {
       daysDiv.each((index, element) => {
         element = $(element);
 
