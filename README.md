@@ -2,9 +2,6 @@
 ## Concert Cloud Development Team Members
 [Tracy Angell](https://github.com/tracye1083), [David Bernard](https://github.com/dbernard87), [Brendan Kurylo](https://github.com/Bkrendan12) & [Luke Teal](https://github.com/luketeal)
 ***
-## Title
-Concert Cloud
-***
 ## Description
 Are you waiting for the pandemic to end so you can see your favorite bands live like the good old days? 
 Are you sick of showing up to the concert and it's pouring rain? 
@@ -41,9 +38,14 @@ Concert Cloud was created using:
 - Git issues and Kanban tasks to manage project work daily
 ***
 ## Screenshots
-![Concert Cloud Landing Page](https://user-images.githubusercontent.com/59030105/115934167-67c86700-a45e-11eb-8330-747a9d3b27ec.png)
+When the user first enters the website they are presented with the below view
+![Concert Cloud Landing Page](assets/css/images/screenshot-1.png)
+Once the user enters a city and selects a Genre the results populate below the search banner
+![Search Results](assets/css/images/screenshot-2.png)
+If the user enters invalid city, does not select a genre or there are no scheduled concerts in that selected location for that genre and asked to try another search.
+![Invalid Search Results](assets/css/images/screenshot-4a.png)
 ***
-## URL
+## Links
 - [Concert Cloud](https://unh-bootcamp-projects.github.io/project-1-group-b/)
 - [Repository](https://github.com/UNH-Bootcamp-Projects/project-1-group-b)
 
