@@ -33,44 +33,12 @@ async function getData() {
     const ticketData = await response.json();
 
     if (ticketData.page.totalElements === 0 || citySearch.val() === "") {
-      daysDiv.each((index, element) => {
-        element = $(element);
-
-        element.empty();
-
-        element.css({
-          display: "flex",
-          "flex-direction": "column",
-          "justify-content": "start",
-          "text-align": "center",
-          padding: "30px",
-          width: "100%",
-          height: "auto",
-          color: "grey",
-          "background-color": "rgb(245, 240, 233)",
-      });
-
-      var errorDiv = $("<div>");
-      errorDiv.css({
-          display: "flex",
-          "flex-direction": "column",
-          "justify-content": "start",
-          "text-align": "center",
-          padding: "30px",
-          width: "100%",
-          height: "fit-content",
-          color: "grey",
-          "background-color": "rgb(245, 240, 233)",
-      });
-      errorDiv.text("No concerts in your search");
-      element.append(errorDiv);
-    })
-      //content is now displayed with the response we received after on click event handler
-  $(".results").show();
-  $(".weather-results").show();
+      var target = $(this).data("target");
+      $("html").addClass("is-clipped");
+      $(target).addClass("is-active");
     return
   }
-  
+    
     var events = ticketData._embedded.events;
 
     daysDiv.empty();
@@ -105,7 +73,7 @@ async function getData() {
                 color: "grey",
                 "background-color": "rgb(245, 240, 233)",
             });
-            sorryDiv.text("NOT AVAILABLE");
+            sorryDiv.text("No additional concerts available");
             element.append(sorryDiv);
             return;
         }
@@ -122,8 +90,7 @@ async function getData() {
         element.append(concertDiv);
 
         var dateDiv = $("<div>");
-        var date = new Date(events[index].dates.start.dateTime);
-        dateDiv.text(date.toString().split(" ").slice(0, 4).join(" "));
+        dateDiv.text(dayjs(events[index].dates.start.dateTime).format("ddd MMM D, YYYY"));
         element.append(dateDiv);
 
         var timeDiv = $("<div>");
@@ -158,8 +125,8 @@ async function getData() {
             })
             .then(function(forecast) {
 
-                var weatherDiv = $("<div>");
-                var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic" });
+                var weatherDiv = $("<div>").css({"margin-top": "auto"});
+                var weatherEl = $("<p>").text(`Dress for ${forecast.days[0].temp} \u00B0F and ${forecast.days[0].conditions}`).css({ "font-style": "italic", "font-size": "1.25rem"});
                 element.append(weatherDiv);
                 weatherDiv.append(weatherEl);
             })
@@ -174,6 +141,12 @@ async function getData() {
 //hides the content when page loads.
 $(".results").hide();
 $(".weather-results").hide();
+
+// close Modal
+$(".modal-close").click(function() {
+  $("html").removeClass("is-clipped");
+  $(this).parent().removeClass("is-active");
+});
 
 submitBtn.on("click", getData);
 
