@@ -33,41 +33,9 @@ async function getData() {
     const ticketData = await response.json();
 
     if (ticketData.page.totalElements === 0 || citySearch.val() === "") {
-      daysDiv.each((index, element) => {
-        element = $(element);
-
-        element.empty();
-
-        element.css({
-          display: "flex",
-          "flex-direction": "column",
-          "justify-content": "start",
-          "text-align": "center",
-          padding: "30px",
-          width: "100%",
-          height: "auto",
-          color: "grey",
-          "background-color": "rgb(245, 240, 233)",
-      });
-
-      var errorDiv = $("<div>");
-      errorDiv.css({
-          display: "flex",
-          "flex-direction": "column",
-          "justify-content": "start",
-          "text-align": "center",
-          padding: "30px",
-          width: "100%",
-          height: "fit-content",
-          color: "grey",
-          "background-color": "rgb(245, 240, 233)",
-      });
-      errorDiv.text("No concerts in your search");
-      element.append(errorDiv);
-    })
-      //content is now displayed with the response we received after on click event handler
-  $(".results").show();
-  $(".weather-results").show();
+      var target = $(this).data("target");
+      $("html").addClass("is-clipped");
+      $(target).addClass("is-active");
     return
   }
     
@@ -105,7 +73,7 @@ async function getData() {
                 color: "grey",
                 "background-color": "rgb(245, 240, 233)",
             });
-            sorryDiv.text("NOT AVAILABLE");
+            sorryDiv.text("No additional concerts available");
             element.append(sorryDiv);
             return;
         }
@@ -173,6 +141,12 @@ async function getData() {
 //hides the content when page loads.
 $(".results").hide();
 $(".weather-results").hide();
+
+// close Modal
+$(".modal-close").click(function() {
+  $("html").removeClass("is-clipped");
+  $(this).parent().removeClass("is-active");
+});
 
 submitBtn.on("click", getData);
 

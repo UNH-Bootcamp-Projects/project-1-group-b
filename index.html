@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="control p-3 mt-3">
-                    <button class="button is-light submitBtn" style="border-radius:7px; color: rgb(125, 125, 125);">
+                    <button class="button is-light submitBtn modal-button" data-target = "#modal" style="border-radius:7px; color: rgb(125, 125, 125);">
               Search
           </button>
                 </div>
@@ -108,7 +108,24 @@
                 </article>
             </div>
         </div>
+    </div>
 
+    <section class = "section">
+        <div class = "container">
+           <div id = "modal" class = "modal">
+              <div class = "modal-background"></div>
+              <div class = "modal-content">
+                 <div class = "box has-text-centered">
+                    <p>
+                    There are no concerts for your search criteria.  Try a different search.
+                    </p>
+                 </div>
+              </div>
+              <button class = "modal-close is-large" aria-label = "close"></button>
+           </div>
+        </div>
+    </section>
+    
         <script src="https://kit.fontawesome.com/300454e470.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bulma-calendar@6.0.9/dist/js/bulma-calendar.min.js" integrity="sha256-j5R7XaUm/P3SCc5bo5XQ8maH3vkFFlXNSeg4ckGiO0k=" crossorigin="anonymous"></script>
         <script src="assets/js/javascript.js"></script>
